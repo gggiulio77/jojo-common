@@ -37,6 +37,34 @@ impl MouseConfig {
     fn new(x_sen: i8, y_sen: i8) -> Self {
         MouseConfig { x_sen, y_sen }
     }
+
+    pub fn x_sen(&self) -> i8 {
+        self.x_sen
+    }
+    pub fn y_sen(&self) -> i8 {
+        self.y_sen
+    }
+}
+
+#[derive(Debug, Clone, Copy, Deserialize, Serialize, Eq, PartialEq)]
+
+pub enum MouseButtonState {
+    Up,
+    Down,
+}
+
+#[derive(Debug, Clone, Deserialize, Serialize, Eq, PartialEq)]
+pub enum MouseButton {
+    Left(MouseButtonState),
+    Middle(MouseButtonState),
+    Right(MouseButtonState),
+    Back(MouseButtonState),
+    Forward(MouseButtonState),
+
+    ScrollUp(MouseButtonState),
+    ScrollDown(MouseButtonState),
+    ScrollLeft(MouseButtonState),
+    ScrollRight(MouseButtonState),
 }
 
 #[cfg(test)]
