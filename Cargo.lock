@@ -20,7 +20,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "jojo_common"
+name = "jojo-common"
 version = "0.1.0"
 dependencies = [
  "serde",

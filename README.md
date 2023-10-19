@@ -1,1 +1,1 @@
-# jojo_common
+# jojo-common
