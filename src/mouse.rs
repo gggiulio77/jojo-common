@@ -1,6 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Copy, Debug, Deserialize, Serialize, PartialEq)]
+#[serde(rename_all = "snake_case")]
 pub struct MouseRead {
     x_read: i32,
     y_read: i32,
@@ -19,6 +20,7 @@ impl MouseRead {
 }
 
 #[derive(Debug, Clone, Deserialize, Serialize, Eq, PartialEq)]
+#[serde(rename_all = "snake_case")]
 pub struct MouseConfig {
     x_sen: i8,
     y_sen: i8,
@@ -47,13 +49,14 @@ impl MouseConfig {
 }
 
 #[derive(Debug, Clone, Copy, Deserialize, Serialize, Eq, PartialEq)]
-
+#[serde(rename_all = "snake_case")]
 pub enum MouseButtonState {
     Up,
     Down,
 }
 
 #[derive(Debug, Clone, Deserialize, Serialize, Eq, PartialEq)]
+#[serde(rename_all = "snake_case")]
 pub enum MouseButton {
     Left(MouseButtonState),
     Middle(MouseButtonState),
@@ -65,9 +68,4 @@ pub enum MouseButton {
     ScrollDown(MouseButtonState),
     ScrollLeft(MouseButtonState),
     ScrollRight(MouseButtonState),
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
 }

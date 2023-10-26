@@ -2,6 +2,7 @@ use crate::network::Ssid;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Deserialize, Serialize, Clone, Default)]
+#[serde(rename_all = "snake_case")]
 pub struct ScanResponse {
     found_ssid: Vec<Ssid>,
 }

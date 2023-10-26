@@ -2,6 +2,7 @@ use serde::{Deserialize, Serialize};
 use std::fmt::{Display, Formatter};
 
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq)]
+#[serde(rename_all = "snake_case")]
 pub struct Ssid(String);
 
 impl TryFrom<String> for Ssid {
@@ -23,6 +24,7 @@ impl Display for Ssid {
 }
 
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq)]
+#[serde(rename_all = "snake_case")]
 pub struct Password(String);
 
 impl TryFrom<String> for Password {
@@ -44,6 +46,7 @@ impl Display for Password {
 }
 
 #[derive(Debug, Clone, Deserialize, Serialize, Default, PartialEq)]
+#[serde(rename_all = "snake_case")]
 pub struct NetworkCredentials {
     pub ssid: Ssid,
     pub password: Password,

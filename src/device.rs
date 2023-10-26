@@ -4,12 +4,13 @@ use serde::{Deserialize, Serialize};
 pub type DeviceId = uuid::Uuid;
 
 #[derive(Debug, Clone, Default, Deserialize, Serialize, Eq, PartialEq)]
+#[serde(rename_all = "snake_case")]
 pub struct Device {
     id: DeviceId,
     name: String,
     mouse_config: Option<mouse::MouseConfig>,
     // TODO: maybe use a hash or static array
-    buttons: Vec<button::Button>,
+    buttons: Vec<button::ButtonRead>,
 }
 
 impl Device {
@@ -17,7 +18,7 @@ impl Device {
         id: DeviceId,
         name: String,
         mouse_config: Option<mouse::MouseConfig>,
-        buttons: Vec<button::Button>,
+        buttons: Vec<button::ButtonRead>,
     ) -> Self {
         Device {
             id,
@@ -39,7 +40,7 @@ impl Device {
         &self.mouse_config
     }
 
-    pub fn buttons(&self) -> &Vec<button::Button> {
+    pub fn buttons(&self) -> &Vec<button::ButtonRead> {
         &self.buttons
     }
 
@@ -55,7 +56,7 @@ impl Device {
         self.mouse_config = mouse_config;
     }
 
-    pub fn set_buttons(&mut self, buttons: Vec<button::Button>) {
+    pub fn set_buttons(&mut self, buttons: Vec<button::ButtonRead>) {
         self.buttons = buttons;
     }
 }
