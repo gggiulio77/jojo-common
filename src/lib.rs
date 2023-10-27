@@ -1,9 +1,11 @@
 pub mod button;
 pub mod device;
-pub mod driver;
 pub mod keyboard;
 pub mod message;
 pub mod mouse;
 pub mod network;
 pub mod otp;
 pub mod room;
+
+#[cfg(feature = "driver")]
+pub mod driver;
