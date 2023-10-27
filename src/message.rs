@@ -36,11 +36,13 @@ pub enum ClientMessage {
     Device(device::Device),
 }
 
+#[cfg(feature = "driver")]
 #[cfg(test)]
 mod tests {
     use crate::{
         button::ButtonRead,
         driver::{self},
+        keyboard,
         keyboard::KeyboardButton,
     };
 
@@ -66,7 +68,7 @@ mod tests {
             ClientMessage::Reads(vec![Reads::new(
                 Some(mouse::MouseRead::new(100, 100)),
                 Some(vec![
-                    ButtonRead::KeyboardButton(KeyboardButton::Key(driver::keyboard::EnigoKey::A)),
+                    ButtonRead::KeyboardButton(KeyboardButton::Key(keyboard::Key::A)),
                     ButtonRead::KeyboardButton(KeyboardButton::Sequence(
                         "Hello World!❤️".to_string()
                     )),

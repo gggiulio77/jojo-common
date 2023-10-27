@@ -1,7 +1,8 @@
+use crate::keyboard::Key;
 use crate::{driver, mouse};
 use enigo::Enigo;
 
-use super::{keyboard::EnigoKey, mouse::EnigoMouseButton};
+use super::mouse::EnigoMouseButton;
 
 pub struct ButtonDriver {
     mouse_driver: Box<dyn driver::mouse::MouseAdapter + Send + Sync>,
@@ -61,7 +62,7 @@ impl<'a> ButtonDriver {
     pub fn key_sequence_dsl(&mut self, sequence: &str) {
         self.keyboard_driver.key_sequence_parse(sequence)
     }
-    pub fn key_click(&mut self, key: EnigoKey) {
+    pub fn key_click(&mut self, key: Key) {
         self.keyboard_driver.key_click(key)
     }
 }
