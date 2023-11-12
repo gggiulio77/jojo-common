@@ -1,10 +1,28 @@
+use crate::mouse::MouseButton;
 use enigo::{Enigo, MouseControllable};
+
 pub type EnigoMouseButton = enigo::MouseButton;
+
+impl From<MouseButton> for EnigoMouseButton {
+    fn from(value: MouseButton) -> Self {
+        match value {
+            MouseButton::Left => EnigoMouseButton::Left,
+            MouseButton::Right => EnigoMouseButton::Right,
+            MouseButton::Back => EnigoMouseButton::Back,
+            MouseButton::Forward => EnigoMouseButton::Forward,
+            MouseButton::Middle => EnigoMouseButton::Middle,
+            MouseButton::ScrollDown => EnigoMouseButton::ScrollDown,
+            MouseButton::ScrollLeft => EnigoMouseButton::ScrollLeft,
+            MouseButton::ScrollRight => EnigoMouseButton::ScrollRight,
+            MouseButton::ScrollUp => EnigoMouseButton::ScrollUp,
+        }
+    }
+}
 
 pub trait MouseAdapter {
     fn mouse_move_relative(&mut self, x: i32, y: i32);
-    fn mouse_move_down(&mut self, button: EnigoMouseButton);
-    fn mouse_move_up(&mut self, button: EnigoMouseButton);
+    fn mouse_move_down(&mut self, button: MouseButton);
+    fn mouse_move_up(&mut self, button: MouseButton);
 }
 
 impl MouseAdapter for Enigo {
@@ -12,11 +30,11 @@ impl MouseAdapter for Enigo {
         // println!("moving mouse {x} horizontal and {y} vertical");
         MouseControllable::mouse_move_relative(self, x, y)
     }
-    fn mouse_move_down(&mut self, button: EnigoMouseButton) {
-        MouseControllable::mouse_down(self, button)
+    fn mouse_move_down(&mut self, button: MouseButton) {
+        MouseControllable::mouse_down(self, button.into())
     }
-    fn mouse_move_up(&mut self, button: EnigoMouseButton) {
-        MouseControllable::mouse_up(self, button)
+    fn mouse_move_up(&mut self, button: MouseButton) {
+        MouseControllable::mouse_up(self, button.into())
     }
 }
 
