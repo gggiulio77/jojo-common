@@ -1,5 +1,6 @@
 use crate::{button, mouse};
 use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
 
 pub type DeviceId = uuid::Uuid;
 
@@ -10,7 +11,8 @@ pub struct Device {
     name: String,
     mouse_config: Option<mouse::MouseConfig>,
     // TODO: maybe use a hash or static array
-    buttons: Vec<button::ButtonRead>,
+    buttons: Vec<button::Button>,
+    actions_map: HashMap<button::ButtonId, button::ButtonAction>,
 }
 
 impl Device {
@@ -18,13 +20,15 @@ impl Device {
         id: DeviceId,
         name: String,
         mouse_config: Option<mouse::MouseConfig>,
-        buttons: Vec<button::ButtonRead>,
+        buttons: Vec<button::Button>,
+        actions_map: HashMap<button::ButtonId, button::ButtonAction>,
     ) -> Self {
         Device {
             id,
             name,
             mouse_config,
             buttons,
+            actions_map,
         }
     }
 
@@ -40,12 +44,12 @@ impl Device {
         &self.mouse_config
     }
 
-    pub fn buttons(&self) -> &Vec<button::ButtonRead> {
+    pub fn buttons(&self) -> &Vec<button::Button> {
         &self.buttons
     }
 
-    pub fn set_id(&mut self, id: DeviceId) {
-        self.id = id;
+    pub fn actions_map(&self) -> &HashMap<button::ButtonId, button::ButtonAction> {
+        &self.actions_map
     }
 
     pub fn set_name(&mut self, name: String) {
@@ -56,7 +60,10 @@ impl Device {
         self.mouse_config = mouse_config;
     }
 
-    pub fn set_buttons(&mut self, buttons: Vec<button::ButtonRead>) {
-        self.buttons = buttons;
+    pub fn set_actions_map(
+        &mut self,
+        actions_map: HashMap<button::ButtonId, button::ButtonAction>,
+    ) {
+        self.actions_map = actions_map;
     }
 }
