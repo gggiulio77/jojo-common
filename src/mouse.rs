@@ -36,7 +36,7 @@ impl Default for MouseConfig {
 }
 
 impl MouseConfig {
-    fn new(x_sen: i8, y_sen: i8) -> Self {
+    pub fn new(x_sen: i8, y_sen: i8) -> Self {
         MouseConfig { x_sen, y_sen }
     }
 
@@ -58,14 +58,14 @@ pub enum MouseButtonState {
 #[derive(Debug, Clone, Deserialize, Serialize, Eq, PartialEq)]
 #[serde(rename_all = "snake_case")]
 pub enum MouseButton {
-    Left(MouseButtonState),
-    Middle(MouseButtonState),
-    Right(MouseButtonState),
-    Back(MouseButtonState),
-    Forward(MouseButtonState),
+    Left,
+    Middle,
+    Right,
+    Back,
+    Forward,
 
-    ScrollUp(MouseButtonState),
-    ScrollDown(MouseButtonState),
-    ScrollLeft(MouseButtonState),
-    ScrollRight(MouseButtonState),
+    ScrollUp,
+    ScrollDown,
+    ScrollLeft,
+    ScrollRight,
 }
