@@ -7,10 +7,34 @@ pub struct CustomButton;
 
 #[derive(Debug, Clone, Deserialize, Serialize, Eq, PartialEq)]
 #[serde(rename_all = "snake_case")]
-pub enum ButtonRead {
-    MouseButton(mouse::MouseButton),
+pub enum ButtonAction {
+    MouseButton(mouse::MouseButton, mouse::MouseButtonState),
     KeyboardButton(keyboard::KeyboardButton),
     CustomButton(CustomButton),
+}
+
+pub type ButtonId = uuid::Uuid;
+
+// This is holds the mcu button info, is used to map a button to an action
+// This is immutable
+#[derive(Debug, Clone, Deserialize, Serialize, Eq, PartialEq)]
+#[serde(rename_all = "snake_case")]
+pub struct Button {
+    id: ButtonId,
+    name: String,
+}
+
+impl Button {
+    pub fn new(id: ButtonId, name: String) -> Self {
+        Button { id, name }
+    }
+
+    pub fn id(&self) -> ButtonId {
+        self.id
+    }
+    pub fn name(&self) -> &str {
+        &self.name
+    }
 }
 
 #[cfg(test)]
@@ -19,29 +43,29 @@ mod tests {
 
     #[test]
     fn test() {
-        let key_button: ButtonRead = ButtonRead::CustomButton(CustomButton);
-        let mouse_button: ButtonRead =
-            ButtonRead::MouseButton(mouse::MouseButton::Left(mouse::MouseButtonState::Up));
+        let key_button = ButtonAction::CustomButton(CustomButton);
+        let mouse_button =
+            ButtonAction::MouseButton(mouse::MouseButton::Left, mouse::MouseButtonState::Up);
 
-        let buttons: Vec<ButtonRead> = vec![key_button, mouse_button];
+        let actions: Vec<ButtonAction> = vec![key_button, mouse_button];
 
-        for button in buttons {
+        for button in actions {
             match button {
-                ButtonRead::MouseButton(mouse_button) => match mouse_button {
-                    mouse::MouseButton::Left(_) => {
+                ButtonAction::MouseButton(mouse_button, state) => match mouse_button {
+                    mouse::MouseButton::Left => {
                         println!("Left click")
                     }
-                    mouse::MouseButton::Middle(_) => {}
-                    mouse::MouseButton::Right(_) => {}
-                    mouse::MouseButton::Back(_) => {}
-                    mouse::MouseButton::Forward(_) => {}
-                    mouse::MouseButton::ScrollUp(_) => {}
-                    mouse::MouseButton::ScrollDown(_) => {}
-                    mouse::MouseButton::ScrollLeft(_) => {}
-                    mouse::MouseButton::ScrollRight(_) => {}
+                    mouse::MouseButton::Middle => {}
+                    mouse::MouseButton::Right => {}
+                    mouse::MouseButton::Back => {}
+                    mouse::MouseButton::Forward => {}
+                    mouse::MouseButton::ScrollUp => {}
+                    mouse::MouseButton::ScrollDown => {}
+                    mouse::MouseButton::ScrollLeft => {}
+                    mouse::MouseButton::ScrollRight => {}
                 },
-                ButtonRead::KeyboardButton(_keyboard_button) => {}
-                ButtonRead::CustomButton(_custom_button) => {}
+                ButtonAction::KeyboardButton(_keyboard_button) => {}
+                ButtonAction::CustomButton(_custom_button) => {}
             }
         }
     }
