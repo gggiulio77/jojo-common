@@ -1,4 +1,5 @@
 use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
 
 use crate::{button, device, mouse};
 
@@ -42,14 +43,14 @@ mod tests {
     use std::collections::HashMap;
 
     use super::*;
-    use crate::button::ButtonAction;
+    use crate::button::{Button, ButtonAction, ButtonMode};
     use crate::keyboard::Key;
     use crate::mouse::{MouseButton, MouseButtonState};
     use uuid::uuid;
 
     #[test]
     fn test_serialize_message() {
-        let device_msg = r#"{"device": {"id": "340917e8-87a9-455c-9645-d08eb99162f9","name": "asd","mouse_config": null,"buttons": [], "actions_map": { "340917e8-87a9-455c-9645-d08eb99162f1": { "keyboard_button": { "key": "A" } } } }}"#;
+        let device_msg = r#"{"device": {"id": "340917e8-87a9-455c-9645-d08eb99162f9","name": "asd","mouse_config": null,"buttons": [{ "id": "340917e8-87a9-455c-9645-d08eb99162f1", "name": "button_0", "mode": "hold" }], "actions_map": { "340917e8-87a9-455c-9645-d08eb99162f1": [{ "keyboard_button": { "key": "A" } }] } }}"#;
         let reads_msg = r#"{"reads": [{"mouse_read": {"x_read": 100, "y_read": 100}, "button_actions": [{"mouse_button": ["left", "up"]}, {"keyboard_button": {"key": "A"}}, {"keyboard_button": {"sequence": "Hello World!❤️"}}, {"keyboard_button": {"sequence_dsl": "{CTRL+}a{CTRL-}"}}]}]}"#;
         let id = uuid!("340917e8-87a9-455c-9645-d08eb99162f9");
 
@@ -62,10 +63,14 @@ mod tests {
                 id,
                 format!("asd"),
                 None,
-                Vec::new(),
+                vec![Button::new(
+                    uuid!("340917e8-87a9-455c-9645-d08eb99162f1"),
+                    "button_0".to_string(),
+                    ButtonMode::Hold
+                )],
                 HashMap::from([(
                     uuid!("340917e8-87a9-455c-9645-d08eb99162f1"),
-                    ButtonAction::KeyboardButton(KeyboardButton::Key(Key::A)),
+                    vec![ButtonAction::KeyboardButton(KeyboardButton::Key(Key::A))],
                 )])
             ))
         );
