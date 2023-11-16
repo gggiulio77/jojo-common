@@ -12,7 +12,7 @@ pub struct Device {
     mouse_config: Option<mouse::MouseConfig>,
     // TODO: maybe use a hash or static array
     buttons: Vec<button::Button>,
-    actions_map: HashMap<button::ButtonId, button::ButtonAction>,
+    actions_map: HashMap<button::ButtonId, Vec<button::ButtonAction>>,
 }
 
 impl Device {
@@ -21,7 +21,7 @@ impl Device {
         name: String,
         mouse_config: Option<mouse::MouseConfig>,
         buttons: Vec<button::Button>,
-        actions_map: HashMap<button::ButtonId, button::ButtonAction>,
+        actions_map: HashMap<button::ButtonId, Vec<button::ButtonAction>>,
     ) -> Self {
         Device {
             id,
@@ -48,7 +48,7 @@ impl Device {
         &self.buttons
     }
 
-    pub fn actions_map(&self) -> &HashMap<button::ButtonId, button::ButtonAction> {
+    pub fn actions_map(&self) -> &HashMap<button::ButtonId, Vec<button::ButtonAction>> {
         &self.actions_map
     }
 
@@ -62,7 +62,7 @@ impl Device {
 
     pub fn set_actions_map(
         &mut self,
-        actions_map: HashMap<button::ButtonId, button::ButtonAction>,
+        actions_map: HashMap<button::ButtonId, Vec<button::ButtonAction>>,
     ) {
         self.actions_map = actions_map;
     }
