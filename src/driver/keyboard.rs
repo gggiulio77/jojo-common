@@ -4,6 +4,7 @@ use enigo::{Enigo, KeyboardControllable};
 pub type EnigoKey = enigo::Key;
 
 // TODO: find a way yo replace this horrible enum to same enum conversion
+#[allow(unused_attributes, deprecated)]
 impl From<Key> for EnigoKey {
     fn from(value: Key) -> Self {
         match value {
@@ -87,13 +88,13 @@ impl From<Key> for EnigoKey {
             Key::Accept => EnigoKey::Accept,
             #[cfg(target_os = "windows")]
             Key::Add => EnigoKey::Add,
-            /// alt key on Linux and Windows (option key on macOS)
+            // alt key on Linux and Windows (option key on macOS)
             Key::Alt => EnigoKey::Alt,
             #[cfg(target_os = "windows")]
             Key::Apps => EnigoKey::Apps,
             #[cfg(target_os = "windows")]
             Key::Attn => EnigoKey::Attn,
-            /// backspace key
+            // backspace key
             Key::Backspace => EnigoKey::Backspace,
             #[cfg(target_os = "linux")]
             Key::Begin => EnigoKey::Begin,
@@ -115,14 +116,14 @@ impl From<Key> for EnigoKey {
             Key::BrowserStop => EnigoKey::BrowserStop,
             #[cfg(any(target_os = "windows", target_os = "linux"))]
             Key::Cancel => EnigoKey::Cancel,
-            /// caps lock key
+            // caps lock key
             Key::CapsLock => EnigoKey::CapsLock,
             #[cfg(any(target_os = "windows", target_os = "linux"))]
             Key::Clear => EnigoKey::Clear,
             #[deprecated(since = "0.0.12", note = "now renamed to Meta")]
-            /// command key on macOS (super key on Key::Linux => EnigoKey::Linux, windows key on Windows)
+            // command key on macOS (super key on Key::Linux => EnigoKey::Linux, windows key on Windows)
             Key::Command => EnigoKey::Command,
-            /// control key
+            // control key
             Key::Control => EnigoKey::Control,
             #[cfg(target_os = "windows")]
             Key::Convert => EnigoKey::Convert,
@@ -158,73 +159,73 @@ impl From<Key> for EnigoKey {
             Key::DBESChar => EnigoKey::DBESChar,
             #[cfg(target_os = "windows")]
             Key::Decimal => EnigoKey::Decimal,
-            /// delete key
+            // delete key
             Key::Delete => EnigoKey::Delete,
             #[cfg(target_os = "windows")]
             Key::Divide => EnigoKey::Divide,
-            /// down arrow key
+            // down arrow key
             Key::DownArrow => EnigoKey::DownArrow,
-            /// end key
+            // end key
             Key::End => EnigoKey::End,
             #[cfg(target_os = "windows")]
             Key::Ereof => EnigoKey::Ereof,
-            /// escape key (esc)
+            // escape key (esc)
             Key::Escape => EnigoKey::Escape,
             #[cfg(any(target_os = "windows", target_os = "linux"))]
             Key::Execute => EnigoKey::Execute,
             #[cfg(target_os = "windows")]
             Key::Exsel => EnigoKey::Exsel,
-            /// F1 key
+            // F1 key
             Key::F1 => EnigoKey::F1,
-            /// F2 key
+            // F2 key
             Key::F2 => EnigoKey::F2,
-            /// F3 key
+            // F3 key
             Key::F3 => EnigoKey::F3,
-            /// F4 key
+            // F4 key
             Key::F4 => EnigoKey::F4,
-            /// F5 key
+            // F5 key
             Key::F5 => EnigoKey::F5,
-            /// F6 key
+            // F6 key
             Key::F6 => EnigoKey::F6,
-            /// F7 key
+            // F7 key
             Key::F7 => EnigoKey::F7,
-            /// F8 key
+            // F8 key
             Key::F8 => EnigoKey::F8,
-            /// F9 key
+            // F9 key
             Key::F9 => EnigoKey::F9,
-            /// F10 key
+            // F10 key
             Key::F10 => EnigoKey::F10,
-            /// F11 key
+            // F11 key
             Key::F11 => EnigoKey::F11,
-            /// F12 key
+            // F12 key
             Key::F12 => EnigoKey::F12,
-            /// F13 key
+            // F13 key
             Key::F13 => EnigoKey::F13,
-            /// F14 key
+            // F14 key
             Key::F14 => EnigoKey::F14,
-            /// F15 key
+            // F15 key
             Key::F15 => EnigoKey::F15,
-            /// F16 key
+            // F16 key
             Key::F16 => EnigoKey::F16,
-            /// F17 key
+            // F17 key
             Key::F17 => EnigoKey::F17,
-            /// F18 key
+            // F18 key
             Key::F18 => EnigoKey::F18,
-            /// F19 key
+            // F19 key
             Key::F19 => EnigoKey::F19,
-            /// F20 key
+            // F20 key
             Key::F20 => EnigoKey::F20,
             #[cfg(any(target_os = "windows", target_os = "linux"))]
-            /// F21 key
+            // F21 key
             Key::F21 => EnigoKey::F21,
             #[cfg(any(target_os = "windows", target_os = "linux"))]
-            /// F22 key
+            // F22 key
             Key::F22 => EnigoKey::F22,
             #[cfg(any(target_os = "windows", target_os = "linux"))]
-            /// F23 key
+            // F23 key
             Key::F23 => EnigoKey::F23,
             #[cfg(any(target_os = "windows", target_os = "linux"))]
-            /// F24 key
+            // F24 key
             Key::F24 => EnigoKey::F24,
             #[cfg(target_os = "linux")]
             Key::F25 => EnigoKey::F25,
@@ -309,7 +310,7 @@ impl From<Key> for EnigoKey {
             #[cfg(any(target_os = "windows", target_os = "linux"))]
             Key::Hanja => EnigoKey::Hanja,
             Key::Help => EnigoKey::Help,
-            /// home key
+            // home key
             Key::Home => EnigoKey::Home,
             #[cfg(target_os = "windows")]
             Key::Ico00 => EnigoKey::Ico00,
@@ -338,12 +339,12 @@ impl From<Key> for EnigoKey {
             #[cfg(target_os = "windows")]
             Key::LaunchMediaSelect => EnigoKey::LaunchMediaSelect,
             #[cfg(target_os = "macos")]
-            /// Opens launchpad
+            // Opens launchpad
             Key::Launchpad => EnigoKey::Launchpad,
             #[cfg(target_os = "windows")]
             Key::LButton => EnigoKey::LButton,
             Key::LControl => EnigoKey::LControl,
-            /// left arrow key
+            // left arrow key
             Key::LeftArrow => EnigoKey::LeftArrow,
             #[cfg(target_os = "linux")]
             Key::Linefeed => EnigoKey::Linefeed,
@@ -362,10 +363,10 @@ impl From<Key> for EnigoKey {
             Key::MediaPrevTrack => EnigoKey::MediaPrevTrack,
             #[cfg(any(target_os = "windows", target_os = "linux"))]
             Key::MediaStop => EnigoKey::MediaStop,
-            /// meta key (also known as "windows"Key::, => EnigoKey::" "super"Key::, => EnigoKey::" and "command")
+            // meta key (also known as "windows"Key::, => EnigoKey::" "super"Key::, => EnigoKey::" and "command")
             Key::Meta => EnigoKey::Meta,
             #[cfg(target_os = "macos")]
-            /// Opens mission control
+            // Opens mission control
             Key::MissionControl => EnigoKey::MissionControl,
             #[cfg(any(target_os = "windows", target_os = "linux"))]
             Key::ModeChange => EnigoKey::ModeChange,
@@ -483,15 +484,15 @@ impl From<Key> for EnigoKey {
             Key::OEMReset => EnigoKey::OEMReset,
             #[cfg(target_os = "windows")]
             Key::OEMWsctrl => EnigoKey::OEMWsctrl,
-            /// option key on macOS (alt key on Linux and Windows)
+            // option key on macOS (alt key on Linux and Windows)
             Key::Option => EnigoKey::Option,
             #[cfg(target_os = "windows")]
             Key::PA1 => EnigoKey::PA1,
             #[cfg(target_os = "windows")]
             Key::Packet => EnigoKey::Packet,
-            /// page down key
+            // page down key
             Key::PageDown => EnigoKey::PageDown,
-            /// page up key
+            // page up key
             Key::PageUp => EnigoKey::PageUp,
             #[cfg(any(target_os = "windows", target_os = "linux"))]
             Key::Pause => EnigoKey::Pause,
@@ -508,9 +509,9 @@ impl From<Key> for EnigoKey {
             Key::RControl => EnigoKey::RControl,
             #[cfg(target_os = "linux")]
             Key::Redo => EnigoKey::Redo,
-            /// return key
+            // return key
             Key::Return => EnigoKey::Return,
-            /// right arrow key
+            // right arrow key
             Key::RightArrow => EnigoKey::RightArrow,
             #[cfg(target_os = "windows")]
             Key::RMenu => EnigoKey::RMenu,
@@ -529,29 +530,29 @@ impl From<Key> for EnigoKey {
             Key::ScriptSwitch => EnigoKey::ScriptSwitch,
             #[cfg(target_os = "windows")]
             Key::Separator => EnigoKey::Separator,
-            /// shift key
+            // shift key
             Key::Shift => EnigoKey::Shift,
             #[cfg(target_os = "linux")]
-            /// Lock shift key
+            // Lock shift key
             Key::ShiftLock => EnigoKey::ShiftLock,
             #[cfg(target_os = "windows")]
             Key::Sleep => EnigoKey::Sleep,
             #[cfg(target_os = "windows")]
             Key::Snapshot => EnigoKey::Snapshot,
-            /// space key
+            // space key
             Key::Space => EnigoKey::Space,
             #[cfg(target_os = "windows")]
             Key::Subtract => EnigoKey::Subtract,
             #[deprecated(since = "0.0.12", note = "now renamed to Meta")]
-            /// super key on linux (command key on Key::macOS => EnigoKey::macOS, windows key on Windows)
+            // super key on linux (command key on Key::macOS => EnigoKey::macOS, windows key on Windows)
             Key::Super => EnigoKey::Super,
             #[cfg(target_os = "linux")]
             Key::SysReq => EnigoKey::SysReq,
-            /// tab key (tabulator)
+            // tab key (tabulator)
             Key::Tab => EnigoKey::Tab,
             #[cfg(target_os = "linux")]
             Key::Undo => EnigoKey::Undo,
-            /// up arrow key
+            // up arrow key
             Key::UpArrow => EnigoKey::UpArrow,
             Key::VolumeDown => EnigoKey::VolumeDown,
             Key::VolumeMute => EnigoKey::VolumeMute,
@@ -562,9 +563,9 @@ impl From<Key> for EnigoKey {
             Key::XButton2 => EnigoKey::XButton2,
             #[cfg(target_os = "windows")]
             Key::Zoom => EnigoKey::Zoom,
-            /// keyboard layout dependent key
+            // keyboard layout dependent key
             Key::Layout(char) => EnigoKey::Layout(char),
-            /// raw keycode eg 0x38
+            // raw keycode eg 0x38
             Key::Raw(u16) => EnigoKey::Raw(u16),
         }
     }
