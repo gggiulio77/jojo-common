@@ -1,44 +1,29 @@
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
-use crate::{button, device, mouse};
-
-#[derive(Serialize, Deserialize, PartialEq, Debug, Clone)]
-#[serde(rename_all = "snake_case")]
-pub struct Reads {
-    mouse_read: Option<mouse::MouseRead>,
-    button_actions: Option<Vec<button::ButtonAction>>,
-}
-
-impl Reads {
-    pub fn new(
-        mouse_read: Option<mouse::MouseRead>,
-        button_actions: Option<Vec<button::ButtonAction>>,
-    ) -> Self {
-        Reads {
-            mouse_read,
-            button_actions,
-        }
-    }
-
-    pub fn mouse_read(&self) -> &Option<mouse::MouseRead> {
-        &self.mouse_read
-    }
-
-    pub fn button_actions(&self) -> &Option<Vec<button::ButtonAction>> {
-        &self.button_actions
-    }
-}
+use crate::{button, device, gamepad, mouse};
 
 #[derive(Serialize, Deserialize, PartialEq, Debug)]
 #[serde(rename_all = "snake_case")]
 pub enum ClientMessage {
-    Reads(Vec<Reads>),
     Device(device::Device),
+    ButtonActions(Vec<button::ButtonAction>),
+    MouseRead(mouse::MouseRead),
+    AxisRead(gamepad::AxisRead),
+    HatRead(gamepad::HatRead),
+}
+
+#[derive(Serialize, Deserialize, PartialEq, Debug)]
+#[serde(rename_all = "snake_case")]
+pub enum ServerMessage {
+    UpdateDevice(HashMap<button::ButtonId, button::ButtonAction>),
 }
 
 #[cfg(test)]
 mod tests {
+    use crate::gamepad::{
+        Axis, AxisRead, FourWayHat, GamepadButton, GamepadButtonState, Hat, HatRead, HatValue,
+    };
     use crate::{keyboard, keyboard::KeyboardButton};
     use std::collections::HashMap;
 
@@ -51,11 +36,17 @@ mod tests {
     #[test]
     fn test_serialize_message() {
         let device_msg = r#"{"device": {"id": "340917e8-87a9-455c-9645-d08eb99162f9","name": "asd","mouse_config": null,"buttons": [{ "id": "340917e8-87a9-455c-9645-d08eb99162f1", "name": "button_0", "mode": "hold" }], "actions_map": { "340917e8-87a9-455c-9645-d08eb99162f1": [{ "keyboard_button": { "key": "A" } }] } }}"#;
-        let reads_msg = r#"{"reads": [{"mouse_read": {"x_read": 100, "y_read": 100}, "button_actions": [{"mouse_button": ["left", "up"]}, {"keyboard_button": {"key": "A"}}, {"keyboard_button": {"sequence": "Hello World!❤️"}}, {"keyboard_button": {"sequence_dsl": "{CTRL+}a{CTRL-}"}}]}]}"#;
+        let mouse_msg = r#"{"mouse_read": {"x_read": 100, "y_read": 100} }"#;
+        let buttons_msg = r#"{"button_actions": [{"mouse_button": ["left", "up"]}, {"keyboard_button": {"key": "A"}}, {"keyboard_button": {"sequence": "Hello World!❤️"}}, {"keyboard_button": {"sequence_dsl": "{+CTRL}a{-CTRL}"}}, {"gamepad_button": ["button1", "pressed"]}]}"#;
+        let axis_msg = r#"{"axis_read": ["axis1", 100] }"#;
+        let hat_msg = r#"{"hat_read": ["hat1", {"discrete": "centered"}]}"#;
         let id = uuid!("340917e8-87a9-455c-9645-d08eb99162f9");
 
         let device_result: ClientMessage = serde_json::from_str(device_msg).unwrap();
-        let reads_result: ClientMessage = serde_json::from_str(reads_msg).unwrap();
+        let mouse_result: ClientMessage = serde_json::from_str(mouse_msg).unwrap();
+        let button_result: ClientMessage = serde_json::from_str(buttons_msg).unwrap();
+        let axis_result: ClientMessage = serde_json::from_str(axis_msg).unwrap();
+        let hat_result: ClientMessage = serde_json::from_str(hat_msg).unwrap();
 
         assert_eq!(
             device_result,
@@ -76,20 +67,34 @@ mod tests {
         );
 
         assert_eq!(
-            reads_result,
-            ClientMessage::Reads(vec![Reads::new(
-                Some(mouse::MouseRead::new(100, 100)),
-                Some(vec![
-                    ButtonAction::MouseButton(MouseButton::Left, MouseButtonState::Up),
-                    ButtonAction::KeyboardButton(KeyboardButton::Key(keyboard::Key::A)),
-                    ButtonAction::KeyboardButton(KeyboardButton::Sequence(
-                        "Hello World!❤️".to_string()
-                    )),
-                    ButtonAction::KeyboardButton(KeyboardButton::SequenceDsl(
-                        "{CTRL+}a{CTRL-}".to_string()
-                    ))
-                ])
-            )])
+            mouse_result,
+            ClientMessage::MouseRead(mouse::MouseRead::new(100, 100))
+        );
+
+        assert_eq!(
+            button_result,
+            ClientMessage::ButtonActions(vec![
+                ButtonAction::MouseButton(MouseButton::Left, MouseButtonState::Up),
+                ButtonAction::KeyboardButton(KeyboardButton::Key(keyboard::Key::A)),
+                ButtonAction::KeyboardButton(KeyboardButton::Sequence("Hello World!❤️".to_string())),
+                ButtonAction::KeyboardButton(KeyboardButton::SequenceDsl(
+                    "{+CTRL}a{-CTRL}".to_string()
+                )),
+                ButtonAction::GamepadButton(GamepadButton::Button1, GamepadButtonState::Pressed)
+            ])
+        );
+
+        assert_eq!(
+            axis_result,
+            ClientMessage::AxisRead(AxisRead::new(Axis::Axis1, 100))
+        );
+
+        assert_eq!(
+            hat_result,
+            ClientMessage::HatRead(HatRead::new(
+                Hat::Hat1,
+                HatValue::Discrete(FourWayHat::Centered)
+            ))
         );
     }
 }
