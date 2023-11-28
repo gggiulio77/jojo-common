@@ -1,10 +1,13 @@
 use crate::keyboard::Key;
-use crate::{driver, mouse};
+use crate::{driver, gamepad, mouse};
 use enigo::Enigo;
+
+use super::gamepad::GamepadDriver;
 
 pub struct ButtonDriver {
     mouse_driver: Box<dyn driver::mouse::MouseAdapter + Send + Sync>,
     keyboard_driver: Box<dyn driver::keyboard::KeyboardAdapter + Send + Sync>,
+    gamepad_driver: Box<dyn driver::gamepad::GamePadAdapter + Send + Sync>,
 }
 
 impl Default for ButtonDriver {
@@ -12,6 +15,7 @@ impl Default for ButtonDriver {
         ButtonDriver {
             mouse_driver: Box::new(Enigo::new()),
             keyboard_driver: Box::new(Enigo::new()),
+            gamepad_driver: Box::new(GamepadDriver::default()),
         }
     }
 }
@@ -20,10 +24,12 @@ impl ButtonDriver {
     pub fn new(
         mouse_driver: Box<dyn driver::mouse::MouseAdapter + Send + Sync>,
         keyboard_driver: Box<dyn driver::keyboard::KeyboardAdapter + Send + Sync>,
+        gamepad_driver: Box<dyn driver::gamepad::GamePadAdapter + Send + Sync>,
     ) -> ButtonDriver {
         ButtonDriver {
             mouse_driver,
             keyboard_driver,
+            gamepad_driver,
         }
     }
 
@@ -45,8 +51,19 @@ impl ButtonDriver {
     pub fn key_sequence_dsl(&mut self, sequence: &str) {
         self.keyboard_driver.key_sequence_parse(sequence)
     }
+
     pub fn key_click(&mut self, key: Key) {
         self.keyboard_driver.key_click(key)
+    }
+
+    pub fn gamepad_button_to_state(
+        &mut self,
+        gamepad_button: gamepad::GamepadButton,
+        state: gamepad::GamepadButtonState,
+    ) {
+        self.gamepad_driver
+            .set_button(gamepad_button, state)
+            .expect("[gamepad_button_to_state]: error")
     }
 }
 

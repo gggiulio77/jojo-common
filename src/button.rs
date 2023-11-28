@@ -1,4 +1,4 @@
-use crate::{keyboard, mouse};
+use crate::{gamepad, keyboard, mouse};
 use serde::{Deserialize, Serialize};
 
 // TODO: find about what can we do, Actions like open chrome bound to a button, or a Key of the SO (like ctrl, alt, etc) or a sequence of things
@@ -10,6 +10,7 @@ pub struct CustomButton;
 pub enum ButtonAction {
     MouseButton(mouse::MouseButton, mouse::MouseButtonState),
     KeyboardButton(keyboard::KeyboardButton),
+    GamepadButton(gamepad::GamepadButton, gamepad::GamepadButtonState),
     CustomButton(CustomButton),
 }
 
@@ -76,6 +77,7 @@ mod tests {
                     mouse::MouseButton::ScrollRight => {}
                 },
                 ButtonAction::KeyboardButton(_keyboard_button) => {}
+                ButtonAction::GamepadButton(_, _) => {}
                 ButtonAction::CustomButton(_custom_button) => {}
             }
         }
