@@ -1,4 +1,5 @@
 pub mod button;
+pub mod command;
 pub mod device;
 pub mod gamepad;
 pub mod keyboard;
