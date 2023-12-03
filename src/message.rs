@@ -1,6 +1,7 @@
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
+use crate::device::DeviceId;
 use crate::{button, device, gamepad, mouse};
 
 #[derive(Serialize, Deserialize, PartialEq, Debug, Clone)]
@@ -13,10 +14,12 @@ pub enum ClientMessage {
     HatRead(gamepad::HatRead),
 }
 
-#[derive(Serialize, Deserialize, PartialEq, Debug)]
+#[derive(Serialize, Deserialize, PartialEq, Debug, Clone)]
 #[serde(rename_all = "snake_case")]
 pub enum ServerMessage {
-    UpdateDevice(HashMap<button::ButtonId, button::ButtonAction>),
+    // TODO: implement a way to config analog inputs
+    UpdateDevice(DeviceId, HashMap<button::ButtonId, button::ButtonAction>),
+    RestartDevice(DeviceId),
 }
 
 #[cfg(test)]
