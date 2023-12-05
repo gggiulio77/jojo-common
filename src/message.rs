@@ -18,8 +18,12 @@ pub enum ClientMessage {
 #[serde(rename_all = "snake_case")]
 pub enum ServerMessage {
     // TODO: implement a way to config analog inputs
-    UpdateDevice(DeviceId, HashMap<button::ButtonId, button::ButtonAction>),
+    UpdateDevice(
+        DeviceId,
+        HashMap<button::ButtonId, Vec<button::ButtonAction>>,
+    ),
     RestartDevice(DeviceId),
+    ClearCredentials(DeviceId),
 }
 
 #[cfg(test)]
