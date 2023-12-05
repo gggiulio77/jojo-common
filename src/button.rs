@@ -45,3 +45,40 @@ impl Button {
         &self.mode
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::keyboard::{Key, KeyboardButton};
+    use crate::message::ServerMessage;
+    use std::collections::HashMap;
+    use uuid::uuid;
+
+    #[test]
+    fn test_serialize() {
+        let button_actions: Vec<ButtonAction> = vec![
+            ButtonAction::CustomButton(CustomCommand::Binary(
+                "C:\\Users\\gggiu\\AppData\\Roaming\\Spotify\\Spotify.exe".to_string(),
+            )),
+            ButtonAction::KeyboardButton(KeyboardButton::Key(Key::A)),
+            ButtonAction::KeyboardButton(KeyboardButton::Key(Key::A)),
+        ];
+        let message = crate::message::ServerMessage::UpdateDevice(
+            uuid!("58c79037-d101-476d-bcbe-1503e9011261"),
+            HashMap::from([(
+                uuid!("0ce7ecdb-4dcc-46f5-804c-65a39d2277a0"),
+                button_actions,
+            )]),
+        );
+        let serialized = bincode::serialize(&message).unwrap();
+        let serialized_text = serde_json::to_string(&message).unwrap();
+        let deserialized =
+            bincode::deserialize::<crate::message::ServerMessage>(&serialized).unwrap();
+        let deserialized_text: ServerMessage = serde_json::from_str(&serialized_text).unwrap();
+
+        println!("[serialized]: {:?}", serialized);
+
+        assert_eq!(deserialized, message);
+        assert_eq!(deserialized_text, message);
+    }
+}

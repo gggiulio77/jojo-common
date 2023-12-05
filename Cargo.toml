@@ -6,7 +6,13 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [features]
+default = ["windows"]
+# this is wrong, driver depends on target_os. Only in windows we can add vjoy
 driver = ["dep:enigo", "dep:vjoy"]
+# for now we create this os features, we need acces to all crate::keyboard::Key values in the mcu to the target_os used in the server
+windows = []
+linux = []
+mac_os = []
 
 [dependencies]
 vjoy = { version = "0.6.0", optional = true }                             # this dependency is windows only, maybe we can make an os flag
@@ -16,3 +22,4 @@ uuid = { version = "1.4.1", features = ["v4", "fast-rng", "serde"] }
 
 [dev-dependencies]
 serde_json = "1.0.107"
+bincode = "1.3.3"

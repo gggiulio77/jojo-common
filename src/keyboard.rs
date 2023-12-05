@@ -13,172 +13,172 @@ pub enum KeyboardButton {
 // TODO: we need to find a way to use a file in a dependency instead of all the project, with this we can erase this enum
 #[derive(Debug, Copy, Deserialize, Serialize, Clone, PartialEq, Eq, Hash)]
 pub enum Key {
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Num0,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Num1,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Num2,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Num3,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Num4,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Num5,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Num6,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Num7,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Num8,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Num9,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     A,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     B,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     C,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     D,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     E,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     F,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     G,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     H,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     I,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     J,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     K,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     L,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     M,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     N,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     O,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     P,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Q,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     R,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     S,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     T,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     U,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     V,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     W,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     X,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Y,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Z,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     AbntC1,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     AbntC2,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Accept,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Add,
     /// alt key on Linux and Windows (option key on macOS)
     Alt,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Apps,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Attn,
     /// backspace key
     Backspace,
-    #[cfg(target_os = "linux")]
+    #[cfg(feature = "linux")]
     Begin,
-    #[cfg(target_os = "linux")]
+    #[cfg(feature = "linux")]
     Break,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     BrowserBack,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     BrowserFavorites,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     BrowserForward,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     BrowserHome,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     BrowserRefresh,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     BrowserSearch,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     BrowserStop,
-    #[cfg(any(target_os = "windows", target_os = "linux"))]
+    #[cfg(any(feature = "windows", feature = "linux"))]
     Cancel,
     /// caps lock key
     CapsLock,
-    #[cfg(any(target_os = "windows", target_os = "linux"))]
+    #[cfg(any(feature = "windows", feature = "linux"))]
     Clear,
     #[deprecated(since = "0.0.12", note = "now renamed to Meta")]
     /// command key on macOS (super key on Linux, windows key on Windows)
     Command,
     /// control key
     Control,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Convert,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Crsel,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     DBEAlphanumeric,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     DBECodeinput,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     DBEDetermineString,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     DBEEnterDLGConversionMode,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     DBEEnterIMEConfigMode,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     DBEEnterWordRegisterMode,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     DBEFlushString,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     DBEHiragana,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     DBEKatakana,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     DBENoCodepoint,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     DBENoRoman,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     DBERoman,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     DBESBCSChar,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     DBESChar,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Decimal,
     /// delete key
     Delete,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Divide,
     /// down arrow key
     DownArrow,
     /// end key
     End,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Ereof,
     /// escape key (esc)
     Escape,
-    #[cfg(any(target_os = "windows", target_os = "linux"))]
+    #[cfg(any(feature = "windows", feature = "linux"))]
     Execute,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Exsel,
     /// F1 key
     F1,
@@ -220,353 +220,353 @@ pub enum Key {
     F19,
     /// F20 key
     F20,
-    #[cfg(any(target_os = "windows", target_os = "linux"))]
+    #[cfg(any(feature = "windows", feature = "linux"))]
     /// F21 key
     F21,
-    #[cfg(any(target_os = "windows", target_os = "linux"))]
+    #[cfg(any(feature = "windows", feature = "linux"))]
     /// F22 key
     F22,
-    #[cfg(any(target_os = "windows", target_os = "linux"))]
+    #[cfg(any(feature = "windows", feature = "linux"))]
     /// F23 key
     F23,
-    #[cfg(any(target_os = "windows", target_os = "linux"))]
+    #[cfg(any(feature = "windows", feature = "linux"))]
     /// F24 key
     F24,
-    #[cfg(target_os = "linux")]
+    #[cfg(feature = "linux")]
     F25,
-    #[cfg(target_os = "linux")]
+    #[cfg(feature = "linux")]
     F26,
-    #[cfg(target_os = "linux")]
+    #[cfg(feature = "linux")]
     F27,
-    #[cfg(target_os = "linux")]
+    #[cfg(feature = "linux")]
     F28,
-    #[cfg(target_os = "linux")]
+    #[cfg(feature = "linux")]
     F29,
-    #[cfg(target_os = "linux")]
+    #[cfg(feature = "linux")]
     F30,
-    #[cfg(target_os = "linux")]
+    #[cfg(feature = "linux")]
     F31,
-    #[cfg(target_os = "linux")]
+    #[cfg(feature = "linux")]
     F32,
-    #[cfg(target_os = "linux")]
+    #[cfg(feature = "linux")]
     F33,
-    #[cfg(target_os = "linux")]
+    #[cfg(feature = "linux")]
     F34,
-    #[cfg(target_os = "linux")]
+    #[cfg(feature = "linux")]
     F35,
-    #[cfg(target_os = "macos")]
+    #[cfg(feature = "macos")]
     Function,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Final,
-    #[cfg(target_os = "linux")]
+    #[cfg(feature = "linux")]
     Find,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadA,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadB,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadDPadDown,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadDPadLeft,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadDPadRight,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadDPadUp,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadLeftShoulder,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadLeftThumbstickButton,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadLeftThumbstickDown,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadLeftThumbstickLeft,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadLeftThumbstickRight,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadLeftThumbstickUp,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadLeftTrigger,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadMenu,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadRightShoulder,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadRightThumbstickButton,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadRightThumbstickDown,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadRightThumbstickLeft,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadRightThumbstickRight,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadRightThumbstickUp,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadRightTrigger,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadView,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadX,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     GamepadY,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Hangeul,
-    #[cfg(any(target_os = "windows", target_os = "linux"))]
+    #[cfg(any(feature = "windows", feature = "linux"))]
     Hangul,
-    #[cfg(any(target_os = "windows", target_os = "linux"))]
+    #[cfg(any(feature = "windows", feature = "linux"))]
     Hanja,
     Help,
     /// home key
     Home,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Ico00,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     IcoClear,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     IcoHelp,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     IMEOff,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     IMEOn,
-    #[cfg(any(target_os = "windows", target_os = "linux"))]
+    #[cfg(any(feature = "windows", feature = "linux"))]
     Insert,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Junja,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Kana,
-    #[cfg(any(target_os = "windows", target_os = "linux"))]
+    #[cfg(any(feature = "windows", feature = "linux"))]
     Kanji,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     LaunchApp1,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     LaunchApp2,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     LaunchMail,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     LaunchMediaSelect,
-    #[cfg(target_os = "macos")]
+    #[cfg(feature = "macos")]
     /// Opens launchpad
     Launchpad,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     LButton,
     LControl,
     /// left arrow key
     LeftArrow,
-    #[cfg(target_os = "linux")]
+    #[cfg(feature = "linux")]
     Linefeed,
-    #[cfg(any(target_os = "windows", target_os = "linux"))]
+    #[cfg(any(feature = "windows", feature = "linux"))]
     LMenu,
     LShift,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     LWin,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     MButton,
-    #[cfg(any(target_os = "windows", target_os = "linux"))]
+    #[cfg(any(feature = "windows", feature = "linux"))]
     MediaNextTrack,
-    #[cfg(any(target_os = "windows", target_os = "linux"))]
+    #[cfg(any(feature = "windows", feature = "linux"))]
     MediaPlayPause,
-    #[cfg(any(target_os = "windows", target_os = "linux"))]
+    #[cfg(any(feature = "windows", feature = "linux"))]
     MediaPrevTrack,
-    #[cfg(any(target_os = "windows", target_os = "linux"))]
+    #[cfg(any(feature = "windows", feature = "linux"))]
     MediaStop,
     /// meta key (also known as "windows", "super", and "command")
     Meta,
-    #[cfg(target_os = "macos")]
+    #[cfg(feature = "macos")]
     /// Opens mission control
     MissionControl,
-    #[cfg(any(target_os = "windows", target_os = "linux"))]
+    #[cfg(any(feature = "windows", feature = "linux"))]
     ModeChange,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Multiply,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     NavigationAccept,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     NavigationCancel,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     NavigationDown,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     NavigationLeft,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     NavigationMenu,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     NavigationRight,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     NavigationUp,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     NavigationView,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     NoName,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     NonConvert,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     None,
-    #[cfg(any(target_os = "windows", target_os = "linux"))]
+    #[cfg(any(feature = "windows", feature = "linux"))]
     Numlock,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Numpad0,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Numpad1,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Numpad2,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Numpad3,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Numpad4,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Numpad5,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Numpad6,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Numpad7,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Numpad8,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Numpad9,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEM1,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEM102,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEM2,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEM3,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEM4,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEM5,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEM6,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEM7,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEM8,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMAttn,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMAuto,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMAx,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMBacktab,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMClear,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMComma,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMCopy,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMCusel,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMEnlw,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMFinish,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMFJJisho,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMFJLoya,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMFJMasshou,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMFJRoya,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMFJTouroku,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMJump,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMMinus,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMNECEqual,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMPA1,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMPA2,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMPA3,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMPeriod,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMPlus,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMReset,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     OEMWsctrl,
     /// option key on macOS (alt key on Linux and Windows)
     Option,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     PA1,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Packet,
     /// page down key
     PageDown,
     /// page up key
     PageUp,
-    #[cfg(any(target_os = "windows", target_os = "linux"))]
+    #[cfg(any(feature = "windows", feature = "linux"))]
     Pause,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Play,
-    #[cfg(any(target_os = "windows", target_os = "linux"))]
+    #[cfg(any(feature = "windows", feature = "linux"))]
     Print,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Processkey,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     RButton,
-    #[cfg(target_os = "macos")]
+    #[cfg(feature = "macos")]
     RCommand,
     RControl,
-    #[cfg(target_os = "linux")]
+    #[cfg(feature = "linux")]
     Redo,
     /// return key
     Return,
     /// right arrow key
     RightArrow,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     RMenu,
-    #[cfg(target_os = "macos")]
+    #[cfg(feature = "macos")]
     ROption,
     RShift,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     RWin,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Scroll,
-    #[cfg(target_os = "linux")]
+    #[cfg(feature = "linux")]
     ScrollLock,
-    #[cfg(any(target_os = "windows", target_os = "linux"))]
+    #[cfg(any(feature = "windows", feature = "linux"))]
     Select,
-    #[cfg(target_os = "linux")]
+    #[cfg(feature = "linux")]
     ScriptSwitch,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Separator,
     /// shift key
     Shift,
-    #[cfg(target_os = "linux")]
+    #[cfg(feature = "linux")]
     /// Lock shift key
     ShiftLock,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Sleep,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Snapshot,
     /// space key
     Space,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Subtract,
     #[deprecated(since = "0.0.12", note = "now renamed to Meta")]
     /// super key on linux (command key on macOS, windows key on Windows)
     Super,
-    #[cfg(target_os = "linux")]
+    #[cfg(feature = "linux")]
     SysReq,
     /// tab key (tabulator)
     Tab,
-    #[cfg(target_os = "linux")]
+    #[cfg(feature = "linux")]
     Undo,
     /// up arrow key
     UpArrow,
     VolumeDown,
     VolumeMute,
     VolumeUp,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     XButton1,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     XButton2,
-    #[cfg(target_os = "windows")]
+    #[cfg(feature = "windows")]
     Zoom,
     /// keyboard layout dependent key
     Layout(char),
