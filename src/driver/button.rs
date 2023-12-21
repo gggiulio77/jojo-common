@@ -1,30 +1,22 @@
 use crate::keyboard::Key;
-use crate::{driver, gamepad, mouse};
-use enigo::Enigo;
+use crate::{gamepad, mouse};
 
-use super::gamepad::GamepadDriver;
+use super::gamepad::{GamePadAdapter, GamepadDriver};
+use super::keyboard::KeyboardDriver;
+use super::mouse::{MouseAdapter, MouseDriver};
 
+#[derive(Default)]
 pub struct ButtonDriver {
-    mouse_driver: Box<dyn driver::mouse::MouseAdapter + Send + Sync>,
-    keyboard_driver: Box<dyn driver::keyboard::KeyboardAdapter + Send + Sync>,
-    gamepad_driver: Box<dyn driver::gamepad::GamePadAdapter + Send + Sync>,
-}
-
-impl Default for ButtonDriver {
-    fn default() -> Self {
-        ButtonDriver {
-            mouse_driver: Box::new(Enigo::new()),
-            keyboard_driver: Box::new(Enigo::new()),
-            gamepad_driver: Box::new(GamepadDriver::default()),
-        }
-    }
+    mouse_driver: MouseDriver,
+    keyboard_driver: KeyboardDriver,
+    gamepad_driver: GamepadDriver,
 }
 
 impl ButtonDriver {
     pub fn new(
-        mouse_driver: Box<dyn driver::mouse::MouseAdapter + Send + Sync>,
-        keyboard_driver: Box<dyn driver::keyboard::KeyboardAdapter + Send + Sync>,
-        gamepad_driver: Box<dyn driver::gamepad::GamePadAdapter + Send + Sync>,
+        mouse_driver: MouseDriver,
+        keyboard_driver: KeyboardDriver,
+        gamepad_driver: GamepadDriver,
     ) -> ButtonDriver {
         ButtonDriver {
             mouse_driver,

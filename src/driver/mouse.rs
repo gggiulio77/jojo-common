@@ -57,6 +57,20 @@ impl MouseDriver {
     }
 }
 
+impl MouseAdapter for MouseDriver {
+    fn mouse_move_relative(&mut self, x: i32, y: i32) {
+        self.0.mouse_move_relative(x, y)
+    }
+
+    fn mouse_move_down(&mut self, button: MouseButton) {
+        self.0.mouse_move_down(button)
+    }
+
+    fn mouse_move_up(&mut self, button: MouseButton) {
+        self.0.mouse_move_up(button)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

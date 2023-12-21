@@ -597,3 +597,25 @@ impl KeyboardAdapter for Enigo {
     //     todo!()
     // }
 }
+
+pub struct KeyboardDriver(Box<dyn KeyboardAdapter + Send + Sync>);
+
+impl Default for KeyboardDriver {
+    fn default() -> KeyboardDriver {
+        KeyboardDriver(Box::new(Enigo::new()))
+    }
+}
+
+impl KeyboardDriver {
+    pub fn key_sequence(&mut self, sequence: &str) {
+        self.0.key_sequence(sequence)
+    }
+
+    pub fn key_click(&mut self, key: Key) {
+        self.0.key_click(key)
+    }
+
+    pub fn key_sequence_parse(&mut self, sequence: &str) {
+        self.0.key_sequence_parse(sequence)
+    }
+}
