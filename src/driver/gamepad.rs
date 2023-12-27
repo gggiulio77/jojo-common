@@ -88,6 +88,17 @@ impl Default for GamepadDriver {
     }
 }
 
+impl GamepadDriver {
+    pub fn gamepad_button_to_state(
+        &mut self,
+        gamepad_button: GamepadButton,
+        state: GamepadButtonState,
+    ) {
+        self.set_button(gamepad_button, state)
+            .expect("[gamepad_button_to_state]: error")
+    }
+}
+
 impl GamePadAdapter for GamepadDriver {
     fn set_button(
         &mut self,

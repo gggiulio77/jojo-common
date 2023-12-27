@@ -1,4 +1,4 @@
-use crate::mouse::MouseButton;
+use crate::mouse::{MouseButton, MouseButtonState};
 use enigo::{Enigo, MouseControllable};
 
 pub type EnigoMouseButton = enigo::MouseButton;
@@ -54,6 +54,13 @@ impl MouseDriver {
 
     pub fn mouse_move_relative(&mut self, x: i32, y: i32) {
         self.0.mouse_move_relative(x, y)
+    }
+
+    pub fn mouse_button_to_state(&mut self, mouse_button: MouseButton, state: MouseButtonState) {
+        match state {
+            MouseButtonState::Up => self.mouse_move_up(mouse_button),
+            MouseButtonState::Down => self.mouse_move_down(mouse_button),
+        }
     }
 }
 

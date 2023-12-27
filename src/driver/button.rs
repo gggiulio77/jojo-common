@@ -6,6 +6,7 @@ use super::keyboard::KeyboardDriver;
 use super::mouse::{MouseAdapter, MouseDriver};
 
 #[derive(Default)]
+#[deprecated]
 pub struct ButtonDriver {
     mouse_driver: MouseDriver,
     keyboard_driver: KeyboardDriver,
