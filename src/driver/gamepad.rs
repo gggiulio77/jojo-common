@@ -49,7 +49,7 @@ pub trait GamePadAdapter {
     fn set_hat(&mut self, hat: Hat, value: HatValue) -> Result<(), GamePadError>;
 }
 
-// TODO: we catch an estrange behavior with Vjoy::from. If we call it, drop it and call it again vjoy in windows throws an error.
+// TODO: we catch an strange behavior with Vjoy::from. If we call it, drop it and call it again vjoy in windows throws an error.
 // but if we call it two times and save it in different variables we can drop one and call it again and save in a third variable without throw.
 // this implies that once you call it, you have to had a copy to be able to drop the variable a be able to call it again later. Something like this:
 /*
