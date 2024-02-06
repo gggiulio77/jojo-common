@@ -27,7 +27,13 @@ Before proceeding, ensure you have [Rust](https://www.rust-lang.org/tools/instal
 
 ## Usage
 
-Just add jojo-common as a dependency in your `Cargo.toml`.
+Just add jojo-common as a dependency in your `Cargo.toml`. Something like this: 
+```
+[dependencies]
+...
+jojo-common = { git = "https://github.com/gggiulio77/jojo-common.git" }
+...
+```
 
 ## Roadmap
 
